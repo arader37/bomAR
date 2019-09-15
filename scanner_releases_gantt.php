@@ -56,7 +56,7 @@
 
       var options = {
         height: 1000,
-        width: 5000,
+        width: 1750,
         gantt: {
           trackHeight: 30
         }
