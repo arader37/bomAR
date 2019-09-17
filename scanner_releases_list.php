@@ -11,7 +11,7 @@
 
 
 <div class="right-content">
-    <div class="container">
+    <div class="container" id="chart_div">
 
       <h3 style = "color: #01B0F1;">Scanner -> System Releases List</h3>
 

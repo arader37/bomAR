@@ -73,4 +73,10 @@
 </body>
 </html>
 
-  <?php include("./footer.php"); ?>
+<style>
+   tfoot {
+     display: table-header-group;
+   }
+ </style>
+
+<?php include("./footer.php"); ?>
