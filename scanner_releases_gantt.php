@@ -8,8 +8,10 @@
   global $db;
 
 ?>
-<html>
-<head>
+
+<div class="right-content">
+    <div class="container">
+
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['gantt']});
@@ -54,9 +56,10 @@
         ?>
       ]);
 
+         
       var options = {
-        height: 1000,
-        width: 1750,
+        height: 600,
+        width: 2000,
         gantt: {
           trackHeight: 30
         }
@@ -67,16 +70,21 @@
       chart.draw(data, options);
     }
   </script>
-</head>
-<body>
+
+
   <div id="chart_div"></div>
-</body>
-</html>
+</div>
+</div>
+
 
 <style>
    tfoot {
      display: table-header-group;
    }
+   #chart_div{
+     overflow-x: scroll;
+     overflow-y: hidden;
+    }
  </style>
 
 <?php include("./footer.php"); ?>
