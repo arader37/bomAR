@@ -11,7 +11,10 @@
 
 <div class="right-content">
     <div class="container">
-
+      <!--<p> Select specify a project date range.</p>
+      <input type="radio" name="year" value="2019"> 2019   
+      <input type="radio" name="year" value="2020"> 2020   
+      <input type="radio" name="year" value="2021"> 2021   <br>-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['gantt']});
@@ -35,15 +38,20 @@
           $query = "SELECT * from releases";
           $exec = mysqli_query($db,$query);
           while($row = mysqli_fetch_array($exec)){
-            if ($row['status']=="Draft"){
-              $status = 25;
-            }elseif($row['status']=="Active"){
-              $status = 50;
-            }elseif($row['status']=="Completed"){
-              $status = 75;
+            $date1 = new DateTime($row['open_date']);
+            $date2 = new DateTime($row['rtm_date']);
+            $dateNow = new DateTime();
+            if ($dateNow < $date1){
+              $status = 0;
             }else{
-              $status = 100;
+              $totaldays = date_diff($date1, $date2);
+              $currentdays = date_diff($date1, $dateNow);
+              $a = $totaldays->format("%a");
+              $b = $currentdays->format("%a");
+              $percent = $b/$a;
+              $status = round($percent,2);
             };
+            
             $startdt = explode('-',$row['open_date']);
             $enddt = explode('-',$row['rtm_date']);
             echo "['".$row['id']."','"
@@ -58,7 +66,7 @@
 
          
       var options = {
-        height: 600,
+        height: 500,
         width: 2000,
         gantt: {
           trackHeight: 30
