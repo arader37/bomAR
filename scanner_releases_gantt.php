@@ -11,10 +11,7 @@
 
 <div class="right-content">
     <div class="container">
-      <!--<p> Select specify a project date range.</p>
-      <input type="radio" name="year" value="2019"> 2019   
-      <input type="radio" name="year" value="2020"> 2020   
-      <input type="radio" name="year" value="2021"> 2021   <br>-->
+      
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['gantt']});
