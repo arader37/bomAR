@@ -38,9 +38,9 @@
           $query = "SELECT * from releases";
           $exec = mysqli_query($db,$query);
           while($row = mysqli_fetch_array($exec)){
-            $date1 = new DateTime($row['open_date']);
-            $date2 = new DateTime($row['rtm_date']);
-            $dateNow = new DateTime();
+            $date1 = date_create($row['open_date']);
+            $date2 = date_create($row['rtm_date']);
+            $dateNow =date_create(date("Y-m-d"));
             if ($dateNow < $date1){
               $status = 0;
             }else{
@@ -49,9 +49,11 @@
               $a = $totaldays->format("%a");
               $b = $currentdays->format("%a");
               $percent = $b/$a;
-              $status = round($percent,2);
-            };
-            
+              $status = round($percent,2)*100;
+              if ($status > 100){
+                $status = 100;
+              }
+            }
             $startdt = explode('-',$row['open_date']);
             $enddt = explode('-',$row['rtm_date']);
             echo "['".$row['id']."','"
